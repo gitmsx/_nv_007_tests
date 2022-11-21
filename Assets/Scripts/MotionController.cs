@@ -15,11 +15,11 @@ public class MotionController : MonoBehaviour
     [HideInInspector] private Text Text__info003;
     [HideInInspector] private Text Text__info001;
     [HideInInspector] private Text Text__info002;
-    
+
     public Transform Pointer;  // collide with Ray
-    
+
     private Vector3[] DirectionM = new Vector3[4];
-    
+
 
     float cellSize = _global.Global_Scale;
 
@@ -39,7 +39,7 @@ public class MotionController : MonoBehaviour
         DirectionM[3] = -Vector3.right;
 
 
-    
+
 
 
     }
@@ -73,20 +73,22 @@ public class MotionController : MonoBehaviour
 
 
         if (isMoving)
- 
+
         {
 
             Ray ray = new Ray(transform.position, DirectionM[new_direction] * cellSize);
-            
+
 
             if (Physics.Raycast(transform.position, DirectionM[new_direction], out RaycastHit hit, cellSize))
 
+                if (hit.collider.gameObject.tag == "Box")
+
                 {
-                Text__info003.text = hit.transform.position.x.ToString();
-                Pointer.position = hit.point;
-            }
-                
-            
+                    Text__info003.text = hit.transform.position.x.ToString() + " " + hit.collider.gameObject.tag;
+                    Pointer.position = hit.point;
+                }
+
+
 
 
 
