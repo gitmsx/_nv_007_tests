@@ -78,8 +78,8 @@ public class MotionController : MonoBehaviour
 
             Ray ray = new Ray(transform.position, DirectionM[new_direction] * cellSize);
 
-
-            if (Physics.Raycast(transform.position, DirectionM[new_direction], out RaycastHit hit, cellSize))
+            Debug.DrawRay(transform.position, DirectionM[new_direction] * cellSize);
+            if (Physics.Raycast(transform.position, DirectionM[new_direction], out RaycastHit hit,3* cellSize))
 
                 if (hit.collider.gameObject.tag == "Box")
 
