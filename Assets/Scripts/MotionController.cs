@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,12 @@ public class MotionController : MonoBehaviour
     [HideInInspector] private Text Text__info003;
     [HideInInspector] private Text Text__info001;
     [HideInInspector] private Text Text__info002;
+    
+    public Transform Pointer;  // collide with Ray
+    
     private Vector3[] DirectionM = new Vector3[4];
+    
+
     float cellSize = _global.Global_Scale;
 
 
@@ -22,10 +28,10 @@ public class MotionController : MonoBehaviour
     {
         //AudioSource1 = GetComponent<AudioSource>();
 
-        Text__info001 = GameObject.Find("Text__info002").GetComponent<Text>();
+        Text__info001 = GameObject.Find("Text__info001").GetComponent<Text>();
         Text__info002 = GameObject.Find("Text__info002").GetComponent<Text>();
-        Text__info003 = GameObject.Find("Text__info002").GetComponent<Text>();
-
+        Text__info003 = GameObject.Find("Text__info003").GetComponent<Text>();
+        Text__info003.text = "Text__info003";
 
         DirectionM[0] = Vector3.forward;
         DirectionM[1] = Vector3.right;
@@ -33,11 +39,7 @@ public class MotionController : MonoBehaviour
         DirectionM[3] = -Vector3.right;
 
 
-        //ray[0] = new Ray(transform.position, DirectionM[0] * 30);
-        //ray[1] = new Ray(transform.position, DirectionM[1] * 30);
-        //ray[2] = new Ray(transform.position, DirectionM[2] * 30);
-        //ray[3] = new Ray(transform.position, DirectionM[3] * 30);
-
+    
 
 
     }
@@ -68,5 +70,31 @@ public class MotionController : MonoBehaviour
 
 
         }
+
+
+        if (isMoving)
+ 
+        {
+
+            Ray ray = new Ray(transform.position, DirectionM[new_direction] * cellSize);
+            
+
+            if (Physics.Raycast(transform.position, DirectionM[new_direction], out RaycastHit hit, cellSize))
+
+                {
+                Text__info003.text = hit.transform.position.x.ToString();
+                Pointer.position = hit.point;
+            }
+                
+            
+
+
+
+        }
+
+
+
+
+
     }
 }
