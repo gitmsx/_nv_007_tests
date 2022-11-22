@@ -135,8 +135,8 @@ GameObject:
   - component: {fileID: 12136022}
   - component: {fileID: 12136021}
   - component: {fileID: 12136020}
-  m_Layer: 0
-  m_Name: Cube (1)
+  m_Layer: 8
+  m_Name: Cube 1
   m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +218,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &255698454
 GameObject:
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 309145115}
   - component: {fileID: 309145114}
   m_Layer: 0
-  m_Name: Cube (4)
+  m_Name: Wall2
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,7 +346,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &465644484
 GameObject:
@@ -664,7 +664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 595322735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 0.52, z: 8}
+  m_LocalPosition: {x: 8.3, y: 1.2, z: 8.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1059,7 +1059,7 @@ GameObject:
   - component: {fileID: 1135483608}
   - component: {fileID: 1135483607}
   m_Layer: 0
-  m_Name: Cube (5)
+  m_Name: Wall3
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1141,7 +1141,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1212429075
 GameObject:
@@ -1236,7 +1236,7 @@ GameObject:
   - component: {fileID: 1227541337}
   - component: {fileID: 1227541336}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1318,7 +1318,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1277910225
 GameObject:
@@ -1332,8 +1332,8 @@ GameObject:
   - component: {fileID: 1277910228}
   - component: {fileID: 1277910227}
   - component: {fileID: 1277910226}
-  m_Layer: 0
-  m_Name: Cube (6)
+  m_Layer: 8
+  m_Name: Cube 3
   m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1415,7 +1415,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1552876706
 GameObject:
@@ -1429,8 +1429,9 @@ GameObject:
   - component: {fileID: 1552876709}
   - component: {fileID: 1552876708}
   - component: {fileID: 1552876707}
-  m_Layer: 0
-  m_Name: Cube (2)
+  - component: {fileID: 1552876711}
+  m_Layer: 8
+  m_Name: Cube 2
   m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1444,7 +1445,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552876706}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1507,13 +1508,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552876706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 0.5, z: 4}
+  m_LocalPosition: {x: 8.04, y: 0.5, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1552876711
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552876706}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1802667797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1543,7 @@ GameObject:
   - component: {fileID: 1802667800}
   - component: {fileID: 1802667799}
   - component: {fileID: 1802667798}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -1609,7 +1626,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1956264230
 GameObject:
@@ -1839,5 +1856,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
