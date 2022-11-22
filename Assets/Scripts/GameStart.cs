@@ -12,6 +12,9 @@ public class GameStart : MonoBehaviour
     [HideInInspector] private Text Text__info002;
 
 
+    private float TimeToCheckCircle = 2;
+    private float TimeToCheck;
+    private float tmp_Circle = 0;
 
 
     private List<GameObject> listPoints = new List<GameObject>();
@@ -46,8 +49,8 @@ public class GameStart : MonoBehaviour
         for (int i = 0; i < 20; i++)
             for (int j = 0; j < 20; j++)
             {
-                Vector3 NewPos = new Vector3(scale_pf * i, -0.101f, scale_pf * j);
-                //  Instantiate(ChessTmp[(i + j) % 2], NewPos, Quaternion.identity);
+                Vector3 NewPos = new Vector3(scale_pf * i, -0.001f, scale_pf * j);
+                 Instantiate(ChessTmp[(i + j) % 2], NewPos, Quaternion.identity);
             }
 
 
@@ -63,9 +66,16 @@ public class GameStart : MonoBehaviour
     void Update()
     {
 
-        if (CheckWin()) Text__info002.text = "  Winner !!!!!  ";
+        TimeToCheck += Time.deltaTime;
+        Debug.DrawRay(transform.position, -Vector3.up * cellSize, Color.green);
 
 
+        if (TimeToCheckCircle < TimeToCheck)
+        {
+            TimeToCheck = 0;
+            tmp_Circle++;
+            if (CheckWin()) Text__info001.text = "  Winner !!!!!  ";
+        }
 
     }
 
@@ -82,12 +92,11 @@ public class GameStart : MonoBehaviour
             all_Targets++;
             Vector3 CurrentTargetTransformPosition = gameObject.transform.position;
             if (Physics.Raycast(CurrentTargetTransformPosition, -Vector3.up, out RaycastHit hit, cellSize, layerMask))
-
                 all_Cheked++;
         }
 
-
-        if (all_Cheked > 3) return true;
+        Text__info002.text = "  Remains boxes "+ (all_Targets - all_Cheked).ToString();
+        if (all_Targets - all_Cheked <= 2) return true;
         return false;
     }
 
