@@ -93,7 +93,13 @@ public class MotionController : MonoBehaviour
                 {
                     Text__info003.text = hit.transform.position.x.ToString() + " " + hit.collider.gameObject.tag;
                     Pointer.position = hit.point;
-                    isMoving = false;
+                    
+
+                    var ObjToMove = hit.collider.gameObject;
+                    if (TryMoveBox(ObjToMove))
+                        MoveBox(ObjToMove);
+                    else
+                        isMoving = false;
                 }
 
                 else 
@@ -110,8 +116,26 @@ public class MotionController : MonoBehaviour
         }
 
 
-
+       
 
 
     }
+
+    bool TryMoveBox(GameObject ObjToMove)
+    {
+    
+        if (Physics.Raycast(ObjToMove.transform.position, DirectionM[new_direction], out RaycastHit hit, cellSize))
+            return false;
+        else
+            return true;
+    }
+
+
+
+    void MoveBox(GameObject  ObjToMove)
+    {
+        var destPos2 = ObjToMove.transform.position + DirectionM[new_direction] * cellSize;
+        ObjToMove.transform.position = destPos2;
+    }
+
 }
