@@ -17,6 +17,7 @@ public class GameStart : MonoBehaviour
     float cellSize = _global.Global_Scale;
 
 
+    private float tmp_Circle = 0;
 
 
     void Start()
@@ -34,29 +35,31 @@ public class GameStart : MonoBehaviour
             for (int j = 0; j < 20; j++)
             {
                 Vector3 NewPos = new Vector3(scale_pf * i, 0.1f, scale_pf * j);
-                var BoxClone = Instantiate(ChessTmp[(i + j) % 2], NewPos, Quaternion.identity);
-              
+                //  Instantiate(ChessTmp[(i + j) % 2], NewPos, Quaternion.identity);
+
             }
 
-    
 
 
-    
+
+
 
 
         for (int i = 0; i < 2; i++)
         {
             Vector3 SpownPoint = new Vector3(5.2f, 1.1f, 5.2f + i);
-            var Place = Instantiate(PlaceToBox, SpownPoint, Quaternion.identity);
-            
-            listPoints.Add(Place);
-        }    
-        
-        
-        
+            var ekTesr = (GameObject)Instantiate(PlaceToBox, SpownPoint, Quaternion.identity);
+            var ekTesr2 = Instantiate(PlaceToBox, SpownPoint, Quaternion.identity);
 
 
-        
+            listPoints.Add(ekTesr);
+        }
+
+
+
+
+
+
 
     }
 
@@ -70,7 +73,11 @@ public class GameStart : MonoBehaviour
         if (TimeToCheckCircle < TimeToCheck)
         {
             TimeToCheck = 0;
-           bool  status = CheckWin();
+            tmp_Circle++;
+                if (tmp_Circle > 3)
+            {
+                bool status = CheckWin();
+            }
         }
 
 
@@ -81,13 +88,11 @@ public class GameStart : MonoBehaviour
     {
         int all_pnts = 0;
         int all_Cheked = 0;
-        foreach (var PTs in listPoints)
+        foreach (GameObject gameObject in listPoints)
         {
-            all_pnts++;
-            if (PTs.GetComponent("PlaceBoxCheck"))
-            {
 
-            }
+            gameObject.transform.position = gameObject.transform.position + Vector3.right * cellSize;
+            all_pnts++;
         }
         return false;
     }

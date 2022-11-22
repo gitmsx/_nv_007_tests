@@ -12,7 +12,10 @@ public class PlaceBoxCheck : MonoBehaviour
 {
 
 
-   public  bool Ffull = false;
+    public bool Ffull = false;
+    public GameObject _perem;
+
+
     float cellSize = _global.Global_Scale;
     private float TimeToCheckCircle = 2;
     private float TimeToCheck;
