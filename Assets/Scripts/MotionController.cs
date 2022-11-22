@@ -9,7 +9,7 @@ public class MotionController : MonoBehaviour
 
     int new_direction = 0;
     bool isMoving = false;
-    public float speed = 2f;
+    public float speed = 12f;
     Vector3 destPos; //позиция куда двигаемся
     AudioSource AudioSource1;
     [HideInInspector] private Text Text__info003;
@@ -46,6 +46,10 @@ public class MotionController : MonoBehaviour
 
     void Update()
     {
+
+        Debug.DrawRay(transform.position, DirectionM[new_direction] * cellSize,Color.red);
+
+
         if (isMoving)
         {
             destPos = transform.position + DirectionM[new_direction] * cellSize;
@@ -78,14 +82,15 @@ public class MotionController : MonoBehaviour
 
             Ray ray = new Ray(transform.position, DirectionM[new_direction] * cellSize);
 
-            Debug.DrawRay(transform.position, DirectionM[new_direction] * cellSize);
-            if (Physics.Raycast(transform.position, DirectionM[new_direction], out RaycastHit hit,3* cellSize))
+            
+            if (Physics.Raycast(transform.position, DirectionM[new_direction], out RaycastHit hit, cellSize))
 
                 if (hit.collider.gameObject.tag == "Box")
 
                 {
                     Text__info003.text = hit.transform.position.x.ToString() + " " + hit.collider.gameObject.tag;
                     Pointer.position = hit.point;
+                    isMoving = false;
                 }
 
 
