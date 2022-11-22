@@ -46,7 +46,7 @@ public class GameStart : MonoBehaviour
 
         for (int i = 0; i < 2; i++)
         {
-            Vector3 SpownPoint = new Vector3(10, 1, 10 + i);
+            Vector3 SpownPoint = new Vector3(5.2f, 1.1f, 5.2f + i);
             var Place = Instantiate(PlaceToBox, SpownPoint, Quaternion.identity);
             
             listPoints.Add(Place);
