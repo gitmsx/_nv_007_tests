@@ -11,7 +11,7 @@ public class GameStart : MonoBehaviour
     [HideInInspector] private Text Text__info001;
     [HideInInspector] private Text Text__info002;
 
-    
+
 
 
     private List<GameObject> listPoints = new List<GameObject>();
@@ -20,11 +20,11 @@ public class GameStart : MonoBehaviour
 
     public GameObject PlaceToBox;
 
- 
+
     float cellSize = _global.Global_Scale;
 
-    
-  
+
+
 
 
     void Start()
@@ -47,7 +47,7 @@ public class GameStart : MonoBehaviour
             for (int j = 0; j < 20; j++)
             {
                 Vector3 NewPos = new Vector3(scale_pf * i, -0.101f, scale_pf * j);
-              //  Instantiate(ChessTmp[(i + j) % 2], NewPos, Quaternion.identity);
+                //  Instantiate(ChessTmp[(i + j) % 2], NewPos, Quaternion.identity);
             }
 
 
@@ -63,7 +63,7 @@ public class GameStart : MonoBehaviour
     void Update()
     {
 
-        CheckWin();
+        if (CheckWin()) Text__info002.text = "  Winner !!!!!  ";
 
 
 
@@ -75,25 +75,19 @@ public class GameStart : MonoBehaviour
         int all_Targets = 0;
         int all_Cheked = 0;
         int layerMask = 1 << 8;
-        Text__info002.text = "Count "+ listPoints.Count.ToString();
-        Text__info001.text = "";
+
+
         foreach (GameObject gameObject in listPoints)
         {
             all_Targets++;
-            Vector3 CurrentTargetTransformPosition = gameObject.transform.position ;
-            Debug.DrawRay(CurrentTargetTransformPosition, -Vector3.up * cellSize * 1.2f, Color.cyan);
-            Text__info002.text = Text__info002.text + "TP " +CurrentTargetTransformPosition.ToString();
+            Vector3 CurrentTargetTransformPosition = gameObject.transform.position;
+            if (Physics.Raycast(CurrentTargetTransformPosition, -Vector3.up, out RaycastHit hit, cellSize, layerMask))
 
-            if (Physics.Raycast(CurrentTargetTransformPosition, -Vector3.up , out RaycastHit hit, cellSize ))
-            {
                 all_Cheked++;
-                Text__info001.text = Text__info001.text+ "  on way  "+ all_Cheked.ToString();
-                
-            }
         }
 
-        Text__info001.text = Text__info001.text +"   all77  =  "+ all_Targets.ToString()+ "  ch " + all_Cheked.ToString();
-        if (all_Cheked >0 )     return true;
+
+        if (all_Cheked > 3) return true;
         return false;
     }
 
