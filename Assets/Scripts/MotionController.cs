@@ -82,10 +82,13 @@ public class MotionController : MonoBehaviour
 
             Ray ray = new Ray(transform.position, DirectionM[new_direction] * cellSize);
 
-            
+
             if (Physics.Raycast(transform.position, DirectionM[new_direction], out RaycastHit hit, cellSize))
 
+            {
+                Text__info003.text = hit.collider.gameObject.tag;
                 if (hit.collider.gameObject.tag == "Box")
+
 
                 {
                     Text__info003.text = hit.transform.position.x.ToString() + " " + hit.collider.gameObject.tag;
@@ -93,6 +96,13 @@ public class MotionController : MonoBehaviour
                     isMoving = false;
                 }
 
+                else 
+                {
+                    // wall !!!! 
+                    isMoving = false;
+                }
+
+            }
 
 
 
