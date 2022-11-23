@@ -31,9 +31,9 @@ public class ReadMaps : MonoBehaviour
 
 
 
-    void Start()
+    public void Start1(int Level1)
     {
-        List<string> parsed = ReadData(Level);
+        List<string> parsed = ReadData(Level1);
         CreateLevel(parsed);
     }
 

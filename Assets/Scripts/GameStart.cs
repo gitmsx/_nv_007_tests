@@ -30,7 +30,7 @@ public class GameStart : MonoBehaviour
 
 
 
-    void Start()
+     void Start()
     {
         float scale_pf = _global.Global_Scale;
         GameObject[] ChessTmp = new GameObject[2];
@@ -39,6 +39,8 @@ public class GameStart : MonoBehaviour
         Text__info002 = GameObject.Find("Text__info002").GetComponent<Text>();
         Text__info003 = GameObject.Find("Text__info003").GetComponent<Text>();
         Text__info003.text = "Text__info003";
+        ReadMaps rm = new ReadMaps();
+        rm.Start1(1);
 
     }
 
@@ -61,6 +63,11 @@ public class GameStart : MonoBehaviour
         GameObject[] object3 = GameObject.FindGameObjectsWithTag(Tagg);
         foreach (GameObject objectTM in object3)
         Destroy(objectTM);
+
+        ReadMaps rm = new ReadMaps();
+        rm.Start1(2);
+
+
     }
 
     void NewLevel()
