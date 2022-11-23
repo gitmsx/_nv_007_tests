@@ -10,7 +10,7 @@ public class GameStart : MonoBehaviour
     [HideInInspector] private Text Text__info003;
     [HideInInspector] private Text Text__info001;
     [HideInInspector] private Text Text__info002;
-
+    public int Criterii_win2 = 4;
 
     private float TimeToCheckCircle = 2;
     private float TimeToCheck;
@@ -40,76 +40,71 @@ public class GameStart : MonoBehaviour
         Text__info003 = GameObject.Find("Text__info003").GetComponent<Text>();
         Text__info003.text = "Text__info003";
 
-
-
-
-        //ChessTmp[0] = PF_chess1;
-        //ChessTmp[1] = PF_chess2;
-
-        //for (int i = 0; i < 20; i++)
-        //    for (int j = 0; j < 20; j++)
-        //    {
-        //        Vector3 NewPos = new Vector3(scale_pf * i, -0.301f, scale_pf * j);
-        //         Instantiate(ChessTmp[(i + j) % 2], NewPos, Quaternion.identity);
-        //    }
-
-
-
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-
         TimeToCheck += Time.deltaTime;
-        Debug.DrawRay(transform.position, -Vector3.up * cellSize, Color.green);
-
-
         if (TimeToCheckCircle < TimeToCheck)
         {
             TimeToCheck = 0;
             tmp_Circle++;
-            if (CheckWin()) Text__info001.text = "  Winner !!!!!  ";
+            if (CheckWin()) NewLevel();
         }
+    }
+
+
+
+    void DestroyByTag(string Tagg)
+    {
+        GameObject[] object3 = GameObject.FindGameObjectsWithTag(Tagg);
+        foreach (GameObject objectTM in object3)
+        Destroy(objectTM);
+    }
+
+    void NewLevel()
+    {
+
+        DestroyByTag("Wall");
+        DestroyByTag("Box");
+        DestroyByTag("Player");
+        DestroyByTag("Target");
+
+
 
     }
 
 
+
+
     bool CheckWin()
     {
-
-       
-
-
-
         int all_Targets = 0;
         int all_Cheked = 0;
         int layerMask = 1 << 8;
 
         Text__info001.text = "";
-
-
-
         GameObject[] object2 = GameObject.FindGameObjectsWithTag("Target");
 
 
-        
-   
+
+
 
 
         foreach (GameObject gameObject in object2)
         {
             all_Targets++;
             Vector3 TP = gameObject.transform.position;
-            TP=new Vector3(TP.x, TP.y+1, TP.z);
-            Text__info001.text = Text__info001.text + "  -- CurrentTargetTransformPosition " + (TP).ToString();
-            // , layerMask
-            if (Physics.Raycast(TP, -Vector3.up, out RaycastHit hit, cellSize*2.4f))
+            TP = new Vector3(TP.x, TP.y + 1, TP.z);
+
+
+            if (Physics.Raycast(TP, -Vector3.up, out RaycastHit hit, cellSize * 2.4f, layerMask))
                 all_Cheked++;
         }
 
         Text__info002.text = "  Remains boxes " + (all_Targets - all_Cheked).ToString();
-        if (all_Targets - all_Cheked <= 2) return true;
+        if (all_Targets - all_Cheked <= Criterii_win2) return true;
         return false;
     }
 
