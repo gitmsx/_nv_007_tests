@@ -54,11 +54,7 @@ public class GameStart : MonoBehaviour
             }
 
 
-        for (int i = 0; i < 5; i++)
-        {
-            Vector3 SpownPoint = new Vector3(5.02f, 1.201f, 5.02f + i);
-            listPoints.Add(Instantiate(PlaceToBox, SpownPoint, Quaternion.identity));
-        }
+
 
     }
 
@@ -86,7 +82,7 @@ public class GameStart : MonoBehaviour
         int all_Cheked = 0;
         int layerMask = 1 << 8;
 
-        
+        Text__info001.text = "";
         foreach (GameObject gameObject in listPoints)
         {
             all_Targets++;
@@ -94,7 +90,7 @@ public class GameStart : MonoBehaviour
 
             TP=new Vector3(TP.x, TP.y+1, TP.z);
 
-            Text__info002.text = Text__info002.text + "  -- CurrentTargetTransformPosition " + (TP).ToString();
+            Text__info001.text = Text__info001.text + "  -- CurrentTargetTransformPosition " + (TP).ToString();
             // , layerMask
 
             if (Physics.Raycast(TP, -Vector3.up, out RaycastHit hit, cellSize*2.4f))
