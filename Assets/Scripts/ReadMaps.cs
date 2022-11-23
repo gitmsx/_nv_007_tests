@@ -21,10 +21,10 @@ public class ReadMaps : MonoBehaviour
     [SerializeField][Range(1, 6)] int Scale_tmp = 1;
     // GameObject Button;
     // [SerializeField] int Scale_tmp = 1;
-    [SerializeField]  int Level;
-  
+    [SerializeField] int Level;
 
-    
+
+
 
 
 
@@ -72,7 +72,7 @@ public class ReadMaps : MonoBehaviour
         Tipes[1] = Box;
         Tipes[2] = Player;
         Tipes[3] = Target;
-//        Tipes[4] = Someth;
+        //        Tipes[4] = Someth;
 
 
 
@@ -107,30 +107,23 @@ public class ReadMaps : MonoBehaviour
 
         if (elem == 4)
         {
-
-            Vector3 NewPos = new Vector3((3 + intx) * Scale_tmp , 0.001f + 12 * Level, (3 + intZ) * Scale_tmp);
-            Instantiate(Tipes[3], NewPos, Quaternion.identity);
-            Instantiate(Tipes[1], NewPos, Quaternion.identity);
-
+            inst(intx, intZ, Tipes[1]);
+            inst(intx, intZ, Tipes[3]);
         }
-
-
-        else    if (elem >= 0)
-        {
-
-            Vector3 NewPos = new Vector3((3 + intx) * Scale_tmp , 0.001f + 12 * Level, (3 + intZ) * Scale_tmp);
-
-            Instantiate(Tipes[elem], NewPos, Quaternion.identity);
-
-        }
-        else if(elem!=-2) Debug.Log(charN);
-
-
-
+        else if (elem >= 0)
+            inst(intx, intZ, Tipes[elem]);
 
 
     }
 
+
+    void inst(int intx, int intZ, GameObject Tipes)
+    {
+
+        Vector3 NewPos = new Vector3((3 + intx) * Scale_tmp, 0.501f, (3 + intZ) * Scale_tmp);
+
+        Instantiate(Tipes, NewPos, Quaternion.identity);
+    }
 
 
     List<string> ReadData(int Level)
