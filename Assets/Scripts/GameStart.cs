@@ -43,16 +43,15 @@ public class GameStart : MonoBehaviour
 
 
 
-        ChessTmp[0] = PF_chess1;
-        ChessTmp[1] = PF_chess2;
+        //ChessTmp[0] = PF_chess1;
+        //ChessTmp[1] = PF_chess2;
 
-        for (int i = 0; i < 20; i++)
-            for (int j = 0; j < 20; j++)
-            {
-                Vector3 NewPos = new Vector3(scale_pf * i, -0.301f, scale_pf * j);
-                 Instantiate(ChessTmp[(i + j) % 2], NewPos, Quaternion.identity);
-            }
-
+        //for (int i = 0; i < 20; i++)
+        //    for (int j = 0; j < 20; j++)
+        //    {
+        //        Vector3 NewPos = new Vector3(scale_pf * i, -0.301f, scale_pf * j);
+        //         Instantiate(ChessTmp[(i + j) % 2], NewPos, Quaternion.identity);
+        //    }
 
 
 
@@ -78,21 +77,33 @@ public class GameStart : MonoBehaviour
 
     bool CheckWin()
     {
+
+       
+
+
+
         int all_Targets = 0;
         int all_Cheked = 0;
         int layerMask = 1 << 8;
 
         Text__info001.text = "";
-        foreach (GameObject gameObject in listPoints)
+
+
+
+        GameObject[] object2 = GameObject.FindGameObjectsWithTag("Target");
+
+
+        
+   
+
+
+        foreach (GameObject gameObject in object2)
         {
             all_Targets++;
             Vector3 TP = gameObject.transform.position;
-
             TP=new Vector3(TP.x, TP.y+1, TP.z);
-
             Text__info001.text = Text__info001.text + "  -- CurrentTargetTransformPosition " + (TP).ToString();
             // , layerMask
-
             if (Physics.Raycast(TP, -Vector3.up, out RaycastHit hit, cellSize*2.4f))
                 all_Cheked++;
         }
