@@ -64,8 +64,7 @@ public class GameStart : MonoBehaviour
         foreach (GameObject objectTM in object3)
         Destroy(objectTM);
 
-        ReadMaps rm = new ReadMaps();
-        rm.Start1(2);
+      
 
 
     }
