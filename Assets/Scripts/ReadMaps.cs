@@ -38,10 +38,7 @@ public class ReadMaps : MonoBehaviour
 
     public void Start1(int Level1)
     {
-        Debug.Log("public void Start1(int Level1)");
-        Debug.Log(Wall.ToString());
-        Debug.Log(Box.ToString());
-
+       
         List<string> parsed = ReadData(Level1);
         CreateLevel(parsed);
     }
