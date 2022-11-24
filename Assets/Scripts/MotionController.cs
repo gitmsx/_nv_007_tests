@@ -71,8 +71,8 @@ public class MotionController : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.D)) { new_direction = 1; isMoving = true; }
             else if (Input.GetKeyDown(KeyCode.S)) { new_direction = 2; isMoving = true; }
             else if (Input.GetKeyDown(KeyCode.A)) { new_direction = 3; isMoving = true; }
-
-
+            if (Input.GetKeyDown(KeyCode.F12)) { _global.Cheat77 = true; }
+            
         }
 
 

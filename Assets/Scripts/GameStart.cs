@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,9 @@ public class GameStart : MonoBehaviour
     private float TimeToCheck;
     private float tmp_Circle = 0;
 
+    private int CurrentLevel = 1;
+
+
 
     private List<GameObject> listPoints = new List<GameObject>();
     public GameObject PF_chess1;
@@ -30,7 +34,7 @@ public class GameStart : MonoBehaviour
 
 
 
-     void Start()
+    void Start()
     {
         float scale_pf = _global.Global_Scale;
         GameObject[] ChessTmp = new GameObject[2];
@@ -39,9 +43,27 @@ public class GameStart : MonoBehaviour
         Text__info002 = GameObject.Find("Text__info002").GetComponent<Text>();
         Text__info003 = GameObject.Find("Text__info003").GetComponent<Text>();
         Text__info003.text = "Text__info003";
-        ReadMaps rm = new ReadMaps();
-        rm.Start1(1);
 
+        CurrentLevel = 1;
+        LevelStart(CurrentLevel);
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+    void LevelStart(int Lvl)
+    {
+        GameObject _handl = GameObject.Find("_GameStart");
+        _handl.AddComponent<ReadMaps>();
+        _handl.GetComponent<ReadMaps>().Start1(Lvl);
     }
 
 
@@ -62,9 +84,9 @@ public class GameStart : MonoBehaviour
     {
         GameObject[] object3 = GameObject.FindGameObjectsWithTag(Tagg);
         foreach (GameObject objectTM in object3)
-        Destroy(objectTM);
+            Destroy(objectTM);
 
-      
+
 
 
     }
@@ -72,10 +94,14 @@ public class GameStart : MonoBehaviour
     void NewLevel()
     {
 
+        CurrentLevel++;
+
         DestroyByTag("Wall");
         DestroyByTag("Box");
         DestroyByTag("Player");
         DestroyByTag("Target");
+        
+        LevelStart(CurrentLevel);
 
 
 
@@ -94,7 +120,7 @@ public class GameStart : MonoBehaviour
         GameObject[] object2 = GameObject.FindGameObjectsWithTag("Target");
 
 
-
+        if (_global.Cheat77 == true) { _global.Cheat77 = false; return true; }
 
 
 

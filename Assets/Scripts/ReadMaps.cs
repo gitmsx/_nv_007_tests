@@ -29,12 +29,6 @@ public class ReadMaps : MonoBehaviour
 
 
 
-    public void Start()
-    {
-        _main.EntryPoint();
-
-    }
-
 
     public void Start1(int Level1)
     {
